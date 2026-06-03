@@ -3,6 +3,8 @@ import MovieGrid from "./MovieGrid";
 import TopBar from "./TopBar";
 import Pagination from "./Pagination";
 
+type MediaType = "movie" | "tv" | "all";
+
 interface MainProps {
   searchParams: Promise<{
     page?: string;
@@ -22,7 +24,13 @@ export default async function Main({
   );
 
   const searchQuery = params?.search || "";
-  const currentType = params?.type || "movie";
+
+  const currentType: MediaType =
+    params?.type === "tv"
+      ? "tv"
+      : params?.type === "all"
+      ? "all"
+      : "movie";
 
   const sectionTitle =
     currentType === "tv"
@@ -44,7 +52,7 @@ export default async function Main({
           </div>
         )}
 
-        <section className="flex flex-col gap-4 pb-8 md:pb-12">
+        <section className="flex flex-col gap-4 pb-20 md:pb-12">
           <div className="flex items-center justify-between gap-3 border-b border-secondary pb-3">
             <h2 className="text-lg font-bold text-text-main sm:text-xl md:text-2xl">
               {searchQuery

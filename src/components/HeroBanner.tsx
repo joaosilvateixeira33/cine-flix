@@ -7,8 +7,10 @@ import { useState, useEffect } from "react";
 import { fetchMovies } from "@/lib/tmdb";
 import { useFavorites } from "@/context/FavoritesContext";
 
+type MediaType = "movie" | "tv" | "all";
+
 interface HeroBannerProps {
-  type: string;
+  type: MediaType;
 }
 
 export default function HeroBanner({ type }: HeroBannerProps) {
@@ -38,7 +40,7 @@ export default function HeroBanner({ type }: HeroBannerProps) {
 
   if (!movie) {
     return (
-      <div className="mb-6 flex h-[220px] sm:h-[280px] md:h-[380px] w-full animate-pulse items-center justify-center rounded-2xl bg-secondary">
+      <div className="mb-6 flex h-[220px] w-full animate-pulse items-center justify-center rounded-2xl bg-secondary sm:h-[280px] md:h-[380px]">
         <span className="text-sm text-text-muted">
           Carregando destaque...
         </span>
@@ -67,7 +69,7 @@ export default function HeroBanner({ type }: HeroBannerProps) {
   };
 
   return (
-    <div className="group relative mb-6 h-[220px] sm:h-[280px] md:h-[380px] overflow-hidden rounded-2xl">
+    <div className="group relative mb-6 h-[220px] overflow-hidden rounded-2xl sm:h-[280px] md:h-[380px]">
       <Image
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         alt={movie.title || movie.name}
@@ -94,7 +96,7 @@ export default function HeroBanner({ type }: HeroBannerProps) {
             {movie.title || movie.name}
           </h2>
 
-          <p className="mb-5 hidden max-w-xl text-sm text-text-muted md:line-clamp-3 md:block">
+          <p className="mb-5 hidden max-w-xl text-sm text-text-muted md:block md:line-clamp-3">
             {movie.overview}
           </p>
 

@@ -1,10 +1,12 @@
 import { fetchMovies } from "@/lib/tmdb";
 import MovieCard from "./MovieCard";
 
+type MediaType = "movie" | "tv" | "all";
+
 interface MovieGridProps {
   page: number;
   query: string;
-  type: string;
+  type: MediaType;
 }
 
 export default async function MovieGrid({
@@ -20,14 +22,14 @@ export default async function MovieGrid({
 
   if (!displayMovies.length) {
     return (
-      <div className="w-full py-12 text-center text-text-muted text-sm md:text-base">
+      <div className="w-full py-12 text-center text-sm text-text-muted md:text-base">
         Nenhum resultado encontrado.
       </div>
     );
   }
 
   return (
-    <div className="grid w-full gap-4 sm:gap-5 md:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+    <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 md:gap-6 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
       {displayMovies.map((movie: any) => (
         <MovieCard
           key={movie.id}
