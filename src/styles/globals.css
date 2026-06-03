@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #141414;
+  --color-secondary: #1E1E1E;
+  --color-accent: #00B4D8;
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #A3A3A3;
+  --color-star: #F5C518;
+
+  /* Fontes: Vamos conectar isso com as variáveis do Next.js no Passo 2 */
+  --font-body: var(--font-inter), sans-serif;
+  --font-heading: var(--font-poppins), sans-serif;
+}
+
+@layer base {
+  /* Aplicando as variáveis como padrão para a página inteira */
+  body {
+    background-color: var(--color-primary);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+}
