@@ -1,6 +1,8 @@
 const BASE_URL = "https://api.themoviedb.org/3";
 const TOKEN = process.env.NEXT_PUBLIC_TMDB_API_TOKEN;
 
+export type MediaType = "movie" | "tv" | "all";
+
 if (!TOKEN) {
   console.error(
     "NEXT_PUBLIC_TMDB_API_TOKEN não foi encontrado no .env.local"
@@ -38,9 +40,9 @@ export async function fetchTrendingMovies(page: number = 1) {
 }
 
 export async function fetchMovies(
-  page: number = 1,
-  query: string = "",
-  type: "movie" | "tv" | "all" = "movie"
+  page = 1,
+  query = "",
+  type: MediaType = "movie"
 ) {
   const endpoint = query.trim()
     ? `/search/${type}?language=pt-BR&page=${page}&query=${encodeURIComponent(

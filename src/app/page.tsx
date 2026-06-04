@@ -2,7 +2,7 @@ import BarNavigation from "@/components/BarNavigation";
 import Main from "@/components/Main";
 
 interface HomeProps {
-  searchParams: Promise<{ page?: string; search?: string }>; // Adicionado o search aqui
+  searchParams: Promise<{ page?: string; search?: string }>;
 }
 
 export default function Home({ searchParams }: HomeProps) {
